@@ -10,6 +10,40 @@ def runner():
     return click.testing.CliRunner()
 
 
-def test_main_succeeds(runner):
+@pytest.fixture
+def mock_requests_get(mocker):
+    mock = mocker.patch("requests.get")
+    mock.return_value.__enter__.return_value.json.return_value = [
+        {"title": "delectus aut autem", "completed": False},
+        {"title": "quis ut nam facilis et officia qui", "completed": True},
+        {"title": "fugiat veniam minus", "completed": False},
+        {"title": "et porro tempora", "completed": True},
+    ]
+    return mock
+
+
+def test_main_succeeds(runner, mock_requests_get):
     result = runner.invoke(console.main)
     assert result.exit_code == 0
+
+
+def test_main_prints_title(runner, mock_requests_get):
+    result = runner.invoke(console.main)
+    assert "quis ut nam facilis" in result.output
+
+
+def test_main_invokes_requests_get(runner, mock_requests_get):
+    runner.invoke(console.main)
+    assert mock_requests_get.called
+
+
+def test_main_uses_en_wikipedia_org(runner, mock_requests_get):
+    runner.invoke(console.main)
+    args, _ = mock_requests_get.call_args
+    assert "jsonplaceholder" in args[0]
+
+
+def test_main_fails_on_request_error(runner, mock_requests_get):
+    mock_requests_get.side_effect = Exception("Boom")
+    result = runner.invoke(console.main)
+    assert result.exit_code == 1

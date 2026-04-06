@@ -2,26 +2,21 @@
 import textwrap
 
 import click
-import requests
 
-from . import __version__
-
-
-API_URL = 'https://jsonplaceholder.typicode.com/posts'
+from . import __version__, get_data
 
 
 @click.command()
 @click.version_option(version=__version__)
 def main():
     """The modern Python project."""
-    with requests.get(API_URL) as response:
-        response.raise_for_status()
-        data = response.json()
+    data = get_data.api_data()
 
-    for post in data[:3]:
+    for post in data[:4]:
 
         title = post["title"]
-        extract = post["userId"]
+        status = post["completed"]
 
-        click.secho(title, fg="green")
-        click.secho(extract, fg='blue')
+        # click.secho(title, fg="green")
+        click.echo(textwrap.fill(title))
+        click.secho(status, fg='blue')
