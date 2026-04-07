@@ -1,26 +1,12 @@
 # tests/test_console.py
-import click.testing
-import pytest
 import requests
 
 from modern_python import console
 
 
-@pytest.fixture
-def runner():
-    return click.testing.CliRunner()
-
-
-@pytest.fixture
-def mock_requests_get(mocker):
-    mock = mocker.patch("requests.get")
-    mock.return_value.__enter__.return_value.json.return_value = [
-        {"title": "delectus aut autem", "completed": False},
-        {"title": "quis ut nam facilis et officia qui", "completed": True},
-        {"title": "fugiat veniam minus", "completed": False},
-        {"title": "et porro tempora", "completed": True},
-    ]
-    return mock
+def test_main_uses_posts_endpoint(runner, mock_api_data):
+    runner.invoke(console.main, ["--endpoint=posts"])
+    mock_api_data.assert_called_with(end_point="posts")
 
 
 def test_main_succeeds(runner, mock_requests_get):
