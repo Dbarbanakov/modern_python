@@ -29,6 +29,9 @@ source = ["modern_python"]
 show_missing = true
 fail_under = 100
 
+[tool.black]
+line-length = 88
+
 [dependency-groups]
 dev = [
     "pytest (>=9.0.2,<10.0.0)",
