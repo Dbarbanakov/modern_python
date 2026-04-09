@@ -1,11 +1,13 @@
 # src/hypermodern-python/get_data.py
+from typing import Any
+
 import click
 import requests
 
-API_URL = "https://jsonplaceholder.typicode.com/{end_point}"
+API_URL: str = "https://jsonplaceholder.typicode.com/{end_point}"
 
 
-def api_data(end_point="todos"):
+def api_data(end_point: str = "todos") -> Any:
     url = API_URL.format(end_point=end_point)
 
     try:

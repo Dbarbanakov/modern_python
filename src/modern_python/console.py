@@ -16,7 +16,7 @@ from . import __version__, get_data
     show_default=True,
 )
 @click.version_option(version=__version__)
-def main(endpoint):
+def main(endpoint: str) -> None:
     """The modern Python project."""
     data = get_data.api_data(end_point=endpoint)
 

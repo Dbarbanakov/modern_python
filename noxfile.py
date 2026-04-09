@@ -5,7 +5,7 @@ import nox
 
 locations = "src", "tests", "./noxfile.py"
 
-nox.options.sessions = "lint", "mypy", "tests"
+nox.options.sessions = "lint", "mypy", "pytype", "tests"
 
 
 def install_with_constraints(session, *args, **kwargs):
@@ -88,3 +88,11 @@ def mypy(session):
     args = session.posargs or locations
     install_with_constraints(session, "mypy")
     session.run("mypy", *args)
+
+
+@nox.session(python="3.12")
+def pytype(session):
+    """Run the static type checker."""
+    args = session.posargs or locations
+    install_with_constraints(session, "pytype")
+    session.run("pytype", *args)
