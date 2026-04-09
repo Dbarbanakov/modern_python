@@ -32,6 +32,9 @@ fail_under = 100
 [tool.black]
 line-length = 88
 
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"
+
 [dependency-groups]
 dev = [
     "pytest (>=9.0.2,<10.0.0)",
@@ -47,4 +50,5 @@ dev = [
     "flake8-bugbear (>=25.11.29,<26.0.0)",
     "flake8-import-order (>=0.19.2,<0.20.0)",
     "safety (>=3.7.0,<4.0.0)",
+    "pre-commit (>=4.5.1,<5.0.0)",
 ]
