@@ -10,4 +10,5 @@ jobs:
       with:
         python-version: "3.12"
     - run: pip install poetry==2.3.3
+    - run: poetry install --with dev
     - run: poetry run nox
