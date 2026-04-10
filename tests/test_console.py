@@ -16,7 +16,7 @@ def test_main_succeeds(runner, mock_requests_get):
 
 def test_main_prints_title(runner, mock_requests_get):
     result = runner.invoke(console.main)
-    assert "quis ut nam facilis" in result.output
+    assert "delectus" in result.output
 
 
 def test_main_invokes_requests_get(runner, mock_requests_get):
@@ -24,7 +24,7 @@ def test_main_invokes_requests_get(runner, mock_requests_get):
     assert mock_requests_get.called
 
 
-def test_main_uses_en_wikipedia_org(runner, mock_requests_get):
+def test_main_uses_json_placeholder_api(runner, mock_requests_get):
     runner.invoke(console.main)
     args, _ = mock_requests_get.call_args
     assert "jsonplaceholder" in args[0]

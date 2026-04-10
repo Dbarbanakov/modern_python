@@ -37,6 +37,7 @@ def lint(session):
     install_with_constraints(
         session,
         "flake8",
+        "flake8-annotations",
         "flake8-bandit",
         "flake8-black",
         "flake8-bugbear",
@@ -96,3 +97,12 @@ def pytype(session):
     args = session.posargs or locations
     install_with_constraints(session, "pytype")
     session.run("pytype", *args)
+
+
+# nox sessios for Typeguard.
+# @nox.session(python="3.12")
+# def typeguard(session):
+#     args = session.posargs or ["-m", "not e2e"]
+#     session.run("poetry", "install", external=True)
+#     install_with_constraints(session, "pytest", "pytest-mock", "typeguard")
+#     session.run("pytest", f"--typeguard-packages=modern_python", *args)

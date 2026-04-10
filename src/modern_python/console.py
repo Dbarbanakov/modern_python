@@ -20,10 +20,5 @@ def main(endpoint: str) -> None:
     """The modern Python project."""
     data = get_data.api_data(end_point=endpoint)
 
-    for post in data[:4]:
-
-        title = post["title"]
-        status = post.get("completed") if "completed" in post else post.get("body")
-
-        click.echo(textwrap.fill(title))
-        click.secho(status, fg="blue")
+    click.echo(textwrap.fill(data.title))
+    click.secho(data.id, fg="blue")
