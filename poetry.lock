@@ -2748,6 +2748,21 @@ sphinxcontrib-qthelp = ">=1.0.6"
 sphinxcontrib-serializinghtml = ">=1.1.9"
 
 [[package]]
+name = "sphinx-autodoc-typehints"
+version = "3.10.0"
+description = "Type hints (PEP 484) support for the Sphinx autodoc extension"
+optional = false
+python-versions = ">=3.12"
+groups = ["dev"]
+files = [
+    {file = "sphinx_autodoc_typehints-3.10.0-py3-none-any.whl", hash = "sha256:2176424f9e1ce3054d9016ac16b51d4b9febffd8cad8ece3b7912b2c4646759f"},
+    {file = "sphinx_autodoc_typehints-3.10.0.tar.gz", hash = "sha256:7b821a123852176b2ed4f2cb9da8db06531a15b8098a4c7350c68febb7669bd0"},
+]
+
+[package.dependencies]
+sphinx = ">=9.1"
+
+[[package]]
 name = "sphinxcontrib-applehelp"
 version = "2.0.0"
 description = "sphinxcontrib-applehelp is a Sphinx extension which outputs Apple help books"
@@ -3079,4 +3094,4 @@ tests-strict = ["pytest (==4.6.0) ; python_version < \"3.10.0\" and python_versi
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4.0"
-content-hash = "f6c0eaa934cd7aeec7a24f4d54016dc20d80a8fc3944775571e56b9db65db969"
+content-hash = "6527182139e516526b2706840a08c4bc93d7756d2aa8cc0e1021a7d0df21dd6c"
