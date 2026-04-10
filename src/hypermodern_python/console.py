@@ -1,4 +1,6 @@
 # src/hypermodern_python/console.py
+"""Command-line interface."""
+
 import textwrap
 
 import click
@@ -17,8 +19,8 @@ from . import __version__, get_data
 )
 @click.version_option(version=__version__)
 def main(endpoint: str) -> None:
-    """The modern Python project."""
-    data = get_data.api_data(end_point=endpoint)
+    """The hypermodern Python project."""
+    data = get_data.api_data(endpoint=endpoint)
 
     click.echo(textwrap.fill(data.title))
     click.secho(data.id, fg="blue")

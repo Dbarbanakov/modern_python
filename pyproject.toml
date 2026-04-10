@@ -1,11 +1,9 @@
 [project]
-name = "modern-python"
+name = "hypermodern-python"
 version = "0.1.0"
-description = "The modern Python project"
+description = "The Hypermodern Python project"
 license = "MIT"
 readme = "README.md"
-# homepage = "https://github.com/dbarbanakov/modern-python"
-# repository = "https://github.com/dbarbanakov/modern-python"
 keywords = ["modern"]
 authors = [{ name = "dbarbanakov", email = "dbarbanakov@gmail.com" }]
 requires-python = ">=3.12"
@@ -16,14 +14,14 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-modern-python = "modern_python.console:main"
+hypermodern-python = "hypermodern_python.console:main"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
 
 [tool.coverage.run]
 branch = true
-source = ["modern_python"]
+source = ["hypermodern_python"]
 
 [tool.coverage.report]
 show_missing = true
@@ -59,4 +57,5 @@ dev = [
     "pytype (>=2024.10.11,<2025.0.0)",
     "typeguard (>=4.5.1,<5.0.0)",
     "flake8-annotations (>=3.2.0,<4.0.0)",
+    "flake8-docstrings (>=1.7.0,<2.0.0)",
 ]
