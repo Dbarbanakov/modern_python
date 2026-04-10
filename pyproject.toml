@@ -39,12 +39,6 @@ line-length = 88
 disable = ["pyi-error", "import-error"]
 python_version = "3.12"
 
-[tool.darglint]
-docstring_style = "numpy"
-strictness = "short"
-ignore = ["DAR104"]
-message_template = "{path}:{line}: {msg_id}: {msg}"
-
 [tool.poetry.requires-plugins]
 poetry-plugin-export = ">=1.8"
 
