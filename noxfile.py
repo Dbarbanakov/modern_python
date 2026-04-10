@@ -122,3 +122,11 @@ def typeguard(session: Session) -> None:
     session.run("poetry", "install", external=True)
     install_with_constraints(session, "pytest", "pytest-mock", "typeguard")
     session.run("pytest", "--typeguard-packages=hypermodern_python", *args)
+
+
+@nox.session(python="3.12")
+def xdoctest(session: Session) -> None:
+    """Run examples with xdoctest."""
+    session.run("poetry", "install", external=True)
+    install_with_constraints(session, "xdoctest")
+    session.run("python", "-m", "xdoctest", "hypermodern_python")

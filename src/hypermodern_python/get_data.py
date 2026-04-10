@@ -41,6 +41,12 @@ def api_data(endpoint: str) -> Data:
     Raises:
         ClickException: The HTTP request failed or the HTTP response
             contained an invalid body.
+
+    Example:
+        >>> from hypermodern_python import get_data
+        >>> data = get_data.api_data("todos")
+        >>> bool(data.title)
+        True
     """
     url = API_URL.format(endpoint=endpoint)
 
