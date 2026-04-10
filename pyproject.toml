@@ -6,8 +6,13 @@ license = "MIT"
 readme = "README.md"
 keywords = ["modern"]
 authors = [{ name = "dbarbanakov", email = "dbarbanakov@gmail.com" }]
-requires-python = ">=3.12"
-dependencies = ["click (>=8.3.2,<9.0.0)", "requests (>=2.33.1,<3.0.0)", "desert (>=2022.9.22,<2023.0.0)", "marshmallow (>=4.3.0,<5.0.0)"]
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "click (>=8.3.2,<9.0.0)",
+    "requests (>=2.33.1,<3.0.0)",
+    "desert (>=2022.9.22,<2023.0.0)",
+    "marshmallow (>=4.3.0,<5.0.0)",
+]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -34,6 +39,12 @@ line-length = 88
 disable = ["pyi-error", "import-error"]
 python_version = "3.12"
 
+[tool.darglint]
+docstring_style = "numpy"
+strictness = "short"
+ignore = ["DAR104"]
+message_template = "{path}:{line}: {msg_id}: {msg}"
+
 [tool.poetry.requires-plugins]
 poetry-plugin-export = ">=1.8"
 
@@ -58,4 +69,5 @@ dev = [
     "typeguard (>=4.5.1,<5.0.0)",
     "flake8-annotations (>=3.2.0,<4.0.0)",
     "flake8-docstrings (>=1.7.0,<2.0.0)",
+    "darglint (>=1.8.1,<2.0.0)",
 ]

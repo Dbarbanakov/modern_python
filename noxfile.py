@@ -49,6 +49,7 @@ def lint(session: Session) -> None:
         "flake8-bugbear",
         "flake8-docstrings",
         "flake8-import-order",
+        "darglint",
     )
     session.run("flake8", *args)
 
@@ -56,6 +57,9 @@ def lint(session: Session) -> None:
 @nox.session(python="3.12", reuse_venv=True)
 def tests(session: Session) -> None:
     """Run the test suite.
+
+    Args:
+        session: A nox Session.
 
     In case of running - 'poetry run nox -- args'
 
