@@ -18,6 +18,12 @@ dependencies = [
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.poetry]
+name = "hypermodern-python"
+version = "0.1.0"
+description = "The Hypermodern Python project"
+authors = ["Dbarbanakov"]
+
 [tool.poetry.scripts]
 hypermodern-python = "hypermodern_python.console:main"
 
