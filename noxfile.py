@@ -1,14 +1,16 @@
 # noxfile.py
 import tempfile
+from typing import Any
 
 import nox
+from nox import Session
 
 locations = "src", "tests", "./noxfile.py"
 
-nox.options.sessions = "lint", "mypy", "pytype", "tests"
+nox.options.sessions = "lint", "mypy", "pytype", "typeguard", "tests"
 
 
-def install_with_constraints(session, *args, **kwargs):
+def install_with_constraints(session: Session, *args: str, **kwargs: Any) -> None:
 
     with tempfile.NamedTemporaryFile() as requirements:
         session.run(
@@ -25,14 +27,14 @@ def install_with_constraints(session, *args, **kwargs):
 
 
 @nox.session(python="3.12", reuse_venv=True)
-def black(session):
+def black(session: Session) -> None:
     args = session.posargs or locations
     install_with_constraints(session, "black")
     session.run("black", *args)
 
 
 @nox.session(python="3.12")
-def lint(session):
+def lint(session: Session) -> None:
     args = session.posargs or locations
     install_with_constraints(
         session,
@@ -47,7 +49,7 @@ def lint(session):
 
 
 @nox.session(python="3.12", reuse_venv=True)
-def tests(session):
+def tests(session: Session) -> None:
     """
     In case of running:
         'poetry run nox -- args'
@@ -68,7 +70,7 @@ def tests(session):
 
 
 @nox.session(python="3.12")
-def safety(session):
+def safety(session: Session) -> None:
     with tempfile.NamedTemporaryFile() as requirements:
         session.run(
             "poetry",
@@ -85,24 +87,23 @@ def safety(session):
 
 
 @nox.session(python="3.12")
-def mypy(session):
+def mypy(session: Session) -> None:
     args = session.posargs or locations
     install_with_constraints(session, "mypy")
     session.run("mypy", *args)
 
 
 @nox.session(python="3.12")
-def pytype(session):
+def pytype(session: Session) -> None:
     """Run the static type checker."""
     args = session.posargs or locations
     install_with_constraints(session, "pytype")
     session.run("pytype", *args)
 
 
-# nox sessios for Typeguard.
-# @nox.session(python="3.12")
-# def typeguard(session):
-#     args = session.posargs or ["-m", "not e2e"]
-#     session.run("poetry", "install", external=True)
-#     install_with_constraints(session, "pytest", "pytest-mock", "typeguard")
-#     session.run("pytest", f"--typeguard-packages=modern_python", *args)
+@nox.session(python="3.12")
+def typeguard(session: Session) -> None:
+    args = session.posargs or ["-m", "not e2e"]
+    session.run("poetry", "install", external=True)
+    install_with_constraints(session, "pytest", "pytest-mock", "typeguard")
+    session.run("pytest", "--typeguard-packages=modern_python", *args)
